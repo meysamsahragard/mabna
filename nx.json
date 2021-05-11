@@ -25,6 +25,16 @@
     "admin-e2e": {
       "tags": [],
       "implicitDependencies": ["admin"]
+    },
+    "task-management": {
+      "tags": []
+    },
+    "task-management-e2e": {
+      "tags": [],
+      "implicitDependencies": ["task-management"]
+    },
+    "login-form": {
+      "tags": []
     }
   }
 }
