@@ -1,0 +1,10 @@
+<mat-sidenav-container>
+  <mat-sidenav opened="true" role="navigation" mode="side">
+    <mabna-sidenav-list [items]="sideNavList" (itemClick)="sideNavListItemClick($event)"></mabna-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main class="router-container" [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

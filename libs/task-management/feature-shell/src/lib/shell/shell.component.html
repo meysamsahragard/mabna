@@ -1,0 +1,16 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation" mode="over">
+    <mabna-sidenav-list [items]="sideNavList" (itemClick)="sidenavItemClick($event)"></mabna-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mabna-header (sidenavToggle)="sidenav.toggle()"></mabna-header>
+    <main class="router-container" [@routeAnimations]="prepareRoute(outlet)">
+
+      <router-outlet #outlet="outlet"></router-outlet>
+
+    </main>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+<mabna-footer></mabna-footer>
+

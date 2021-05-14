@@ -20,21 +20,73 @@
   },
   "projects": {
     "admin": {
-      "tags": []
-    },
-    "admin-e2e": {
-      "tags": [],
-      "implicitDependencies": ["admin"]
+      "tags": ["scope:admin"]
     },
     "task-management": {
-      "tags": []
+      "tags": ["scope:task-management"]
     },
-    "task-management-e2e": {
-      "tags": [],
-      "implicitDependencies": ["task-management"]
+    "admin-shell": {
+      "tags": ["scope:admin"]
     },
-    "login-form": {
-      "tags": []
+    "shared-material": {
+      "tags": ["scope:shared"]
+    },
+    "shared-storage": {
+      "tags": ["scope:shared"]
+    },
+    "admin-feature-home": {
+      "tags": ["scope:admin"]
+    },
+    "shared-feature-login": {
+      "tags": ["scope:shared"]
+    },
+    "shared-fake-backend": {
+      "tags": ["scope:shared"]
+    },
+    "shared-ui-login-form": {
+      "tags": ["scope:shared"]
+    },
+    "task-management-feature-shell": {
+      "tags": ["scope:task-management"]
+    },
+    "shared-ui-sidenav-list": {
+      "tags": ["scope:shared"]
+    },
+    "task-management-model": {
+      "tags": ["scope:task-management"]
+    },
+    "task-management-ui-task-dialog": {
+      "tags": ["scope:task-management"]
+    },
+    "task-management-feature-task-list": {
+      "tags": ["scope:task-management"]
+    },
+    "shared-model": {
+      "tags": ["scope:shared"]
+    },
+    "shared-ui-loading": {
+      "tags": ["scope:shared"]
+    },
+    "shared-core-services": {
+      "tags": ["scope:shared"]
+    },
+    "shared-core-auth": {
+      "tags": ["scope:shared"]
+    },
+    "shared-core-error-handling": {
+      "tags": ["scope:shared"]
+    },
+    "shared-ui-footer": {
+      "tags": ["scope:shared"]
+    },
+    "shared-util": {
+      "tags": ["scope:shared"]
+    },
+    "shared-store": {
+      "tags": ["scope:shared"]
+    },
+    "task-management-store": {
+      "tags": ["scope:task-management"]
     }
   }
 }

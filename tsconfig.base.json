@@ -15,7 +15,42 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mabna/login-form": ["libs/login-form/src/index.ts"]
+      "@mabna/admin/data-access": ["libs/admin/data-access/src/index.ts"],
+      "@mabna/admin/feature-shell": ["libs/admin/feature-shell/src/index.ts"],
+      "@mabna/shared/material": ["libs/shared/material/src/index.ts"],
+      "@mabna/shared/storage": ["libs/shared/storage/src/index.ts"],
+      "@mabna/admin/feature-home": ["libs/admin/feature-home/src/index.ts"],
+      "@mabna/shared/feature-login": ["libs/shared/feature-login/src/index.ts"],
+      "@mabna/shared/fake-backend": ["libs/shared/fake-backend/src/index.ts"],
+      "@mabna/shared/ui/login-form": ["libs/shared/ui/login-form/src/index.ts"],
+      "@mabna/task-management/feature-shell": [
+        "libs/task-management/feature-shell/src/index.ts"
+      ],
+      "@mabna/shared/ui/sidenav-list": [
+        "libs/shared/ui/sidenav-list/src/index.ts"
+      ],
+      "@mabna/task-management/model": [
+        "libs/task-management/model/src/index.ts"
+      ],
+      "@mabna/task-management/ui/task-dialog": [
+        "libs/task-management/ui/task-dialog/src/index.ts"
+      ],
+      "@mabna/task-management/feature-task-list": [
+        "libs/task-management/feature-task-list/src/index.ts"
+      ],
+      "@mabna/shared/model": ["libs/shared/model/src/index.ts"],
+      "@mabna/shared/ui/loading": ["libs/shared/ui/loading/src/index.ts"],
+      "@mabna/shared/core/services": ["libs/shared/core/services/src/index.ts"],
+      "@mabna/shared/core/auth": ["libs/shared/core/auth/src/index.ts"],
+      "@mabna/shared/core/error-handling": [
+        "libs/shared/core/error-handling/src/index.ts"
+      ],
+      "@mabna/shared/ui/footer": ["libs/shared/ui/footer/src/index.ts"],
+      "@mabna/shared/util": ["libs/shared/util/src/index.ts"],
+      "@mabna/shared/store": ["libs/shared/store/src/index.ts"],
+      "@mabna/task-management/store": [
+        "libs/task-management/store/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

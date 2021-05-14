@@ -1,0 +1,18 @@
+.router-container {
+  padding: 5rem;
+}
+
+mat-sidenav {
+  background-color: whitesmoke;
+  width: 200px;
+}
+
+mat-sidenav-content, mat-sidenav-container {
+  height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .router-container {
+    padding: 3rem;
+  }
+}

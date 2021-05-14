@@ -59,7 +59,7 @@
       "projectType": "application",
       "root": "apps/admin",
       "sourceRoot": "apps/admin/src",
-      "prefix": "mabna",
+      "prefix": "admin",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -71,7 +71,10 @@
             "tsConfig": "apps/admin/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/admin/src/favicon.ico", "apps/admin/src/assets"],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/admin/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/admin/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -142,38 +145,11 @@
         }
       }
     },
-    "admin-e2e": {
-      "root": "apps/admin-e2e",
-      "sourceRoot": "apps/admin-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/admin-e2e/cypress.json",
-            "tsConfig": "apps/admin-e2e/tsconfig.e2e.json",
-            "devServerTarget": "admin:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "admin:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/admin-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/admin-e2e/**/*"]
-          }
-        }
-      }
-    },
     "task-management": {
       "projectType": "application",
       "root": "apps/task-management",
       "sourceRoot": "apps/task-management/src",
-      "prefix": "mabna",
+      "prefix": "task",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -188,7 +164,10 @@
               "apps/task-management/src/favicon.ico",
               "apps/task-management/src/assets"
             ],
-            "styles": ["apps/task-management/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/task-management/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -259,54 +238,568 @@
         }
       }
     },
-    "task-management-e2e": {
-      "root": "apps/task-management-e2e",
-      "sourceRoot": "apps/task-management-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/task-management-e2e/cypress.json",
-            "tsConfig": "apps/task-management-e2e/tsconfig.e2e.json",
-            "devServerTarget": "task-management:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "task-management:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/task-management-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/task-management-e2e/**/*"]
-          }
-        }
-      }
-    },
-    "login-form": {
+    "admin-shell": {
       "projectType": "library",
-      "root": "libs/login-form",
-      "sourceRoot": "libs/login-form/src",
+      "root": "libs/admin/shell",
+      "sourceRoot": "libs/admin/shell/src",
       "prefix": "mabna",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/login-form/tsconfig.lib.json",
-              "libs/login-form/tsconfig.spec.json"
+              "libs/admin/shell/tsconfig.lib.json",
+              "libs/admin/shell/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/login-form/**/*"]
+            "exclude": ["**/node_modules/**", "!libs/admin/shell/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/login-form"],
+          "outputs": ["coverage/libs/admin/shell"],
           "options": {
-            "jestConfig": "libs/login-form/jest.config.js",
+            "jestConfig": "libs/admin/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "admin-feature-home": {
+      "projectType": "library",
+      "root": "libs/admin/feature-home",
+      "sourceRoot": "libs/admin/feature-home/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/admin/feature-home/tsconfig.lib.json",
+              "libs/admin/feature-home/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/admin/feature-home/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/admin/feature-home"],
+          "options": {
+            "jestConfig": "libs/admin/feature-home/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-material": {
+      "projectType": "library",
+      "root": "libs/shared/material",
+      "sourceRoot": "libs/shared/material/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/material/tsconfig.lib.json",
+              "libs/shared/material/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/material/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/material"],
+          "options": {
+            "jestConfig": "libs/shared/material/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-storage": {
+      "projectType": "library",
+      "root": "libs/shared/storage",
+      "sourceRoot": "libs/shared/storage/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/storage/tsconfig.lib.json",
+              "libs/shared/storage/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/storage/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/storage"],
+          "options": {
+            "jestConfig": "libs/shared/storage/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-feature-login": {
+      "projectType": "library",
+      "root": "libs/shared/feature-login",
+      "sourceRoot": "libs/shared/feature-login/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/feature-login/tsconfig.lib.json",
+              "libs/shared/feature-login/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/feature-login/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/feature-login"],
+          "options": {
+            "jestConfig": "libs/shared/feature-login/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-fake-backend": {
+      "projectType": "library",
+      "root": "libs/shared/fake-backend",
+      "sourceRoot": "libs/shared/fake-backend/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/fake-backend/tsconfig.lib.json",
+              "libs/shared/fake-backend/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/fake-backend/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/fake-backend"],
+          "options": {
+            "jestConfig": "libs/shared/fake-backend/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-ui-login-form": {
+      "projectType": "library",
+      "root": "libs/shared/ui/login-form",
+      "sourceRoot": "libs/shared/ui/login-form/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/login-form/tsconfig.lib.json",
+              "libs/shared/ui/login-form/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/login-form/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/login-form"],
+          "options": {
+            "jestConfig": "libs/shared/ui/login-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "task-management-feature-shell": {
+      "projectType": "library",
+      "root": "libs/task-management/feature-shell",
+      "sourceRoot": "libs/task-management/feature-shell/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/task-management/feature-shell/tsconfig.lib.json",
+              "libs/task-management/feature-shell/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/task-management/feature-shell/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/task-management/feature-shell"],
+          "options": {
+            "jestConfig": "libs/task-management/feature-shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-ui-sidenav-list": {
+      "projectType": "library",
+      "root": "libs/shared/ui/sidenav-list",
+      "sourceRoot": "libs/shared/ui/sidenav-list/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/sidenav-list/tsconfig.lib.json",
+              "libs/shared/ui/sidenav-list/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/ui/sidenav-list/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/sidenav-list"],
+          "options": {
+            "jestConfig": "libs/shared/ui/sidenav-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "task-management-model": {
+      "projectType": "library",
+      "root": "libs/task-management/model",
+      "sourceRoot": "libs/task-management/model/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/task-management/model/tsconfig.lib.json",
+              "libs/task-management/model/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/task-management/model/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/task-management/model"],
+          "options": {
+            "jestConfig": "libs/task-management/model/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "task-management-ui-task-dialog": {
+      "projectType": "library",
+      "root": "libs/task-management/ui/task-dialog",
+      "sourceRoot": "libs/task-management/ui/task-dialog/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/task-management/ui/task-dialog/tsconfig.lib.json",
+              "libs/task-management/ui/task-dialog/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/task-management/ui/task-dialog/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/task-management/ui/task-dialog"],
+          "options": {
+            "jestConfig": "libs/task-management/ui/task-dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "task-management-feature-task-list": {
+      "projectType": "library",
+      "root": "libs/task-management/feature-task-list",
+      "sourceRoot": "libs/task-management/feature-task-list/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/task-management/feature-task-list/tsconfig.lib.json",
+              "libs/task-management/feature-task-list/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/task-management/feature-task-list/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/task-management/feature-task-list"],
+          "options": {
+            "jestConfig": "libs/task-management/feature-task-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-model": {
+      "projectType": "library",
+      "root": "libs/shared/model",
+      "sourceRoot": "libs/shared/model/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/model/tsconfig.lib.json",
+              "libs/shared/model/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/model/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/model"],
+          "options": {
+            "jestConfig": "libs/shared/model/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-ui-loading": {
+      "projectType": "library",
+      "root": "libs/shared/ui/loading",
+      "sourceRoot": "libs/shared/ui/loading/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/loading/tsconfig.lib.json",
+              "libs/shared/ui/loading/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/loading/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/loading"],
+          "options": {
+            "jestConfig": "libs/shared/ui/loading/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-core-services": {
+      "projectType": "library",
+      "root": "libs/shared/core/services",
+      "sourceRoot": "libs/shared/core/services/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/core/services/tsconfig.lib.json",
+              "libs/shared/core/services/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/core/services/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/core/services"],
+          "options": {
+            "jestConfig": "libs/shared/core/services/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-core-auth": {
+      "projectType": "library",
+      "root": "libs/shared/core/auth",
+      "sourceRoot": "libs/shared/core/auth/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/core/auth/tsconfig.lib.json",
+              "libs/shared/core/auth/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/core/auth/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/core/auth"],
+          "options": {
+            "jestConfig": "libs/shared/core/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-core-error-handling": {
+      "projectType": "library",
+      "root": "libs/shared/core/error-handling",
+      "sourceRoot": "libs/shared/core/error-handling/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/core/error-handling/tsconfig.lib.json",
+              "libs/shared/core/error-handling/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/core/error-handling/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/core/error-handling"],
+          "options": {
+            "jestConfig": "libs/shared/core/error-handling/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-ui-footer": {
+      "projectType": "library",
+      "root": "libs/shared/ui/footer",
+      "sourceRoot": "libs/shared/ui/footer/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/footer/tsconfig.lib.json",
+              "libs/shared/ui/footer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/footer/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/footer"],
+          "options": {
+            "jestConfig": "libs/shared/ui/footer/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-util": {
+      "projectType": "library",
+      "root": "libs/shared/util",
+      "sourceRoot": "libs/shared/util/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/util/tsconfig.lib.json",
+              "libs/shared/util/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/util/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util"],
+          "options": {
+            "jestConfig": "libs/shared/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-store": {
+      "projectType": "library",
+      "root": "libs/shared/store",
+      "sourceRoot": "libs/shared/store/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/store/tsconfig.lib.json",
+              "libs/shared/store/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/store/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/store"],
+          "options": {
+            "jestConfig": "libs/shared/store/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "task-management-store": {
+      "projectType": "library",
+      "root": "libs/task-management/store",
+      "sourceRoot": "libs/task-management/store/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/task-management/store/tsconfig.lib.json",
+              "libs/task-management/store/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/task-management/store/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/task-management/store"],
+          "options": {
+            "jestConfig": "libs/task-management/store/jest.config.js",
             "passWithNoTests": true
           }
         }
