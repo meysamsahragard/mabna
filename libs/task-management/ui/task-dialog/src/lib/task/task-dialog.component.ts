@@ -1,10 +1,11 @@
-import { Component, Inject, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: 'task-dialog.component.html',
-  styleUrls: ['task-dialog.component.scss']
+  styleUrls: ['task-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class TaskDialogComponent {
