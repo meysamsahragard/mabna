@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, of } from 'rxjs';
+import { EMPTY, of, throwError } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TaskService } from './task.service';
@@ -11,12 +11,13 @@ import {
   TASK_LOADED,
   TASK_REMOVED,
   TASK_UPDATED,
-  UPDATE_TASK,
+  UPDATE_TASK
 } from './task.actions';
 
 @Injectable()
 export class TaskEffects {
-  constructor(private actions: Actions, private taskService: TaskService) {}
+  constructor(private actions: Actions, private taskService: TaskService) {
+  }
 
   loadTasks$ = createEffect(() =>
     this.actions.pipe(
@@ -24,7 +25,7 @@ export class TaskEffects {
       mergeMap(() =>
         this.taskService.loadTasks().pipe(
           map((tasks) => ({ type: TASK_LOADED, payload: tasks })),
-          catchError(() => EMPTY)
+          catchError((err) => throwError(err))
         )
       )
     )
@@ -36,7 +37,7 @@ export class TaskEffects {
       mergeMap((payload: any) =>
         this.taskService.addTask(payload.payload).pipe(
           map((task) => ({ type: TASK_ADDED, payload: task })),
-          catchError(() => EMPTY)
+          catchError((err) => throwError(err))
         )
       )
     )
@@ -48,7 +49,7 @@ export class TaskEffects {
       mergeMap((payload: any) =>
         this.taskService.removeTask(payload.payload).pipe(
           map((task) => ({ type: TASK_REMOVED, payload: task })),
-          catchError(() => EMPTY)
+          catchError((err) => throwError(err))
         )
       )
     )
@@ -60,7 +61,7 @@ export class TaskEffects {
       mergeMap((payload: any) =>
         this.taskService.updateTask(payload.payload).pipe(
           map((task) => ({ type: TASK_UPDATED, payload: task })),
-          catchError(() => EMPTY)
+          catchError((err) => throwError(err))
         )
       )
     )
