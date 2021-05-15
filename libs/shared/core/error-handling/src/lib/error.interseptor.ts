@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, startWith } from 'rxjs/operators';
 import { MabnaStorage, NotificationService } from '@mabna/shared/core/services';
 
 
@@ -26,13 +26,19 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((response) => {
-        if (response.status === 401) {
-          this.notificationService.showError('You do not have the required permission');
-          MabnaStorage.removeItem('user');
-          this.router.navigateByUrl('/login');
-        } else if (response.status === 400) {
-          this.notificationService.showError(response.error.message);
+        if (response.status.toString().startsWith('5'))
+          this.notificationService.showError('An error occurred on the server. Please try again.');
+        switch (response.status) {
+          case 401:
+            this.notificationService.showError('You do not have the required permission');
+            MabnaStorage.removeItem('user');
+            this.router.navigateByUrl('/login');
+            break;
+          case 400:
+            this.notificationService.showError(response.error.message);
+            break;
         }
+
         return throwError(response);
       })
     );
