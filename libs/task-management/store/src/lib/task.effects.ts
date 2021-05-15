@@ -37,7 +37,7 @@ export class TaskEffects {
       mergeMap((payload: any) =>
         this.taskService.addTask(payload.payload).pipe(
           map((task) => ({ type: TASK_ADDED, payload: task })),
-          catchError((err) => throwError(err))
+          catchError((err) => throwError(err)) //
         )
       )
     )
