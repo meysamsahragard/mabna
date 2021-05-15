@@ -7,16 +7,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['login-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginFormComponent implements OnInit {
-  @Input() error: string | null;
+export class LoginFormComponent {
+  @Input() title = 'login';
+  @Input() submitButtonText = 'login';
+
   @Output() submitForm = new EventEmitter();
 
   form: FormGroup = new FormGroup({
     username: new FormControl('', [
       Validators.required,
-      Validators.pattern('[-_a-zA-Z0-9]*'),
+      Validators.pattern('[-_a-zA-Z0-9]*')
     ]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
   });
 
   get username() {
@@ -26,10 +28,6 @@ export class LoginFormComponent implements OnInit {
   get password() {
     return this.form.get('password');
   }
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   onSubmit() {
     if (this.form.valid) {

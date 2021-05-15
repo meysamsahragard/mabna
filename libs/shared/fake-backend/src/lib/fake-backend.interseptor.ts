@@ -114,7 +114,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     function addTask() {
       if (!isLoggedIn()) return unauthorized();
       const task = { ...body };
-      const userId = getUserId(headers.get('Authentication'));
+      const userId = getUserId();
       task.id = idCreator();
       task.userId = userId;
       tasks.push(task);
@@ -132,7 +132,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     function getTasks() {
       if (!isLoggedIn()) return unauthorized();
 
-      const userId = getUserId(headers.get('Authentication'));
+      const userId = getUserId();
       return ok(tasks.filter(task => task.userId === userId));
     }
 
@@ -144,7 +144,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     // helper functions
 
-    function getUserId(token) {
+    function getUserId() {
+      const token = getToken();
       return users.filter(user => user.token === token.substr(token.indexOf(' ') + 1))[0].id;
     }
 
@@ -160,8 +161,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       return throwError({ status: 401, error: { message: 'Unauthorised' } });
     }
 
+    function getToken() {
+      return headers.get('Authentication');
+    }
+
     function isLoggedIn() {
-      return users.some(user => 'Bearer ' + user.token === headers.get('Authentication'));
+      return users.some(user => 'Bearer ' + user.token === getToken());
     }
 
     function idFromUrl() {
