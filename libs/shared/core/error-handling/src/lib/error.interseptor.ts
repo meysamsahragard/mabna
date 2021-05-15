@@ -9,13 +9,14 @@ import {
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { MabnaStorage } from '@mabna/shared/core/services';
+import { MabnaStorage, NotificationService } from '@mabna/shared/core/services';
 
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) {
   }
 
@@ -25,9 +26,12 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((response) => {
-        if (response instanceof HttpErrorResponse && response.status === 401) {
+        if (response.status === 401) {
+          this.notificationService.showError('You do not have the required permission');
           MabnaStorage.removeItem('user');
-          this.router.navigateByUrl('/log-in');
+          this.router.navigateByUrl('/login');
+        } else if (response.status === 400) {
+          this.notificationService.showError(response.error.message);
         }
         return throwError(response);
       })
