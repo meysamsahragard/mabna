@@ -89,7 +89,7 @@
       "tags": ["scope:task-management"]
     },
     "shared-core-providers": {
-      "tags": []
+      "tags": ["scope:shared"]
     }
   }
 }
