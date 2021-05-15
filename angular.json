@@ -804,6 +804,35 @@
           }
         }
       }
+    },
+    "shared-core-providers": {
+      "projectType": "library",
+      "root": "libs/shared/core/providers",
+      "sourceRoot": "libs/shared/core/providers/src",
+      "prefix": "mabna",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/core/providers/tsconfig.lib.json",
+              "libs/shared/core/providers/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/core/providers/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/core/providers"],
+          "options": {
+            "jestConfig": "libs/shared/core/providers/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

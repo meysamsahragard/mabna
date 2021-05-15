@@ -50,6 +50,9 @@
       "@mabna/shared/store": ["libs/shared/store/src/index.ts"],
       "@mabna/task-management/store": [
         "libs/task-management/store/src/index.ts"
+      ],
+      "@mabna/shared/core/providers": [
+        "libs/shared/core/providers/src/index.ts"
       ]
     }
   },

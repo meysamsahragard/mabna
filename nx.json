@@ -87,6 +87,9 @@
     },
     "task-management-store": {
       "tags": ["scope:task-management"]
+    },
+    "shared-core-providers": {
+      "tags": []
     }
   }
 }

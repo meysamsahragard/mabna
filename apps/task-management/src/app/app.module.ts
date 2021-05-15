@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthService, JwtInterceptor } from '@mabna/shared/core/auth';
 import {
   TaskEffects,
   taskReducer,
-  TaskService,
+  TaskService
 } from '@mabna/task-management/store';
 import { AuthEffects, AuthReducer, LoadingReducer } from '@mabna/shared/store';
-import { fakeBackendProvider } from '@mabna/shared/fake-backend';
 import { SharedMaterialModule } from '@mabna/shared/material';
 import { SharedUiLoadingModule } from '@mabna/shared/ui/loading';
-import { NotificationService } from '@mabna/shared/core/services';
-import { ErrorInterceptor } from '@mabna/shared/core/error-handling';
+import { SharedCoreProvidersModule } from '@mabna/shared/core/providers';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,25 +26,18 @@ import { ErrorInterceptor } from '@mabna/shared/core/error-handling';
     StoreModule.forRoot({
       task: taskReducer,
       auth: AuthReducer,
-      loading: LoadingReducer,
+      loading: LoadingReducer
     }),
     EffectsModule.forRoot([AuthEffects, TaskEffects]),
     HttpClientModule,
     SharedMaterialModule,
     SharedUiLoadingModule,
+    SharedCoreProvidersModule
   ],
   providers: [
-    AuthService,
-    TaskService,
-    NotificationService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
-    },
-    fakeBackendProvider,
+    TaskService
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
